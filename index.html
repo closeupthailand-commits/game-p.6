@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>นักสืบตรรกะ • แบบทดสอบ 10 ข้อ</title>
+  <style>
+    *{box-sizing:border-box}
+    body{isolation:isolate;margin:0;min-height:100vh;background:#f5e9ff;color:#34305e;font-family:system-ui,sans-serif;display:grid;place-items:center;padding:24px;text-align:center}
+    /* Online 3D unicorn: Microsoft Fluent Emoji (MIT), https://github.com/microsoft/fluentui-emoji */
+    body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background-color:#f5e9ff;
+      background-image:url("https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Unicorn/3D/unicorn_3d.png"),linear-gradient(135deg,#ffe5ef,#e8deff 50%,#ccf5f1);
+      background-position:center;
+      background-size:cover;
+      background-repeat:no-repeat}
+    main{width:min(100%,780px);background:#fffffff2;backdrop-filter:blur(6px);padding:clamp(20px,5vw,44px);border:3px solid white;border-radius:36px;box-shadow:0 12px 0 #ded7f4,0 24px 65px #71659125;position:relative}
+    .badge{display:inline-block;background:#eee7ff;color:#58429d;border-radius:99px;padding:9px 18px;font-weight:700}
+    h1{font-size:clamp(26px,5vw,40px);margin:18px 0;color:#6745ac}p{line-height:1.9}.muted{color:#665f7b}
+    .mascot{font-size:64px;margin:18px 0;animation:float 3s ease-in-out infinite}.intro-tags{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}.intro-tags span{background:#fff2ce;border-radius:14px;padding:10px 14px;font-weight:600}
+    progress{width:100%;height:16px;accent-color:#9870dd;margin:18px 0;border:0;border-radius:99px;overflow:hidden}progress::-webkit-progress-bar{background:#eee8fa}progress::-webkit-progress-value{background:linear-gradient(90deg,#a48ce9,#f59ab8);border-radius:99px}progress::-moz-progress-bar{background:#9870dd}
+    h2{font-size:clamp(20px,3.5vw,25px);line-height:1.8}.question-card{background:#f1ecff;border:2px solid #ded2fa;border-radius:24px;padding:18px;margin-bottom:20px}.question-card h2{margin:8px 0}.question-icon{font-size:40px}
+    .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    button{font:inherit;font-weight:650;cursor:pointer;border-radius:18px;padding:16px;border:2px solid #ded7ef;background:#fff;color:#34305e;text-align:center;box-shadow:0 5px 0 #ded7ef;transition:transform .18s,box-shadow .18s,background .18s;overflow-wrap:anywhere}
+    .choices button:nth-child(4n+1){background:#fff2d4}.choices button:nth-child(4n+2){background:#e7f7ff}.choices button:nth-child(4n+3){background:#ffeaf2}.choices button:nth-child(4n+4){background:#e6f8ed}
+    button:hover:not(:disabled){transform:translateY(-4px) rotate(-1deg);box-shadow:0 9px 0 #d3c5ee;border-color:#9473cd}button:active:not(:disabled){transform:translateY(4px) scale(.98);box-shadow:0 1px 0 #d3c5ee}button:focus-visible{outline:3px solid #7954bd;outline-offset:5px}button:disabled{cursor:default}
+    .choices button.selected{border-color:#7954bd;background:#e9ddff;animation:pop .28s ease}.choices button.correct{border-color:#23805e;background:#def8eb;animation:pop .4s ease}.choices button.wrong{border-color:#bd4b69;background:#ffe3ec}
+    .primary{background:#7651b5;color:white;border-color:#7651b5;box-shadow:0 5px 0 #55388a;margin-top:24px;min-width:200px}.primary:hover:not(:disabled){background:#6743a5;box-shadow:0 9px 0 #55388a}.primary:disabled{opacity:.45}
+    .feedback{padding:20px;border:2px dashed #b5a1dc;border-radius:20px;background:#fff8df;margin-top:24px;line-height:1.9;animation:appear .35s ease}
+    .score-card{background:linear-gradient(135deg,#fff0cc,#ffe2ef,#e9e1ff);border-radius:28px;padding:24px;margin:20px 0;animation:appear .5s ease}.score{font-size:clamp(44px,9vw,64px);font-weight:800;color:#6745ac}.result-icon{font-size:72px;animation:pop .6s ease}.award{font-weight:800;font-size:22px;color:#6745ac}.score-card p{margin-bottom:0}
+    details{border:2px solid #e5def3;border-radius:18px;padding:16px;margin:12px 0;background:#faf8ff}summary{cursor:pointer;line-height:1.8;font-weight:600}details p{font-size:15px}.hint{font-size:14px;color:#665f7b}section{animation:appear .35s ease}[hidden]{display:none!important}
+    @keyframes float{50%{transform:translateY(-8px) rotate(5deg)}}@keyframes pop{50%{transform:scale(1.04)}}@keyframes appear{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:520px){body{padding:20px 14px}.choices{grid-template-columns:1fr}main{border-radius:26px}.primary{width:100%}.mascot{font-size:52px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}button:hover:not(:disabled),button:active:not(:disabled){transform:none}}
+
+  </style>
+</head>
+<body>
+<main>
+  <div class="badge">🔎 นักสืบตรรกะ · ระดับ ป.6</div>
+  <h1>คิดให้ดี แล้วหาคำตอบ!</h1>
+  <section id="intro">
+    <div class="mascot" aria-hidden="true">🦊 💡 🌈</div>
+    <div class="intro-tags"><span>🧩 10 ภารกิจ</span><span>⭐ 10 คะแนน</span><span>🍀 ค่อย ๆ คิดได้</span></div>
+    <p>ฝึกสังเกต ใช้เหตุผล และแก้ปัญหากับโจทย์ 10 ข้อ เลือกคำตอบที่ถูกที่สุดเพียงข้อเดียว ข้อละ 1 คะแนน ไม่มีการจับเวลา</p>
+    <p class="muted">เมื่อยืนยันคำตอบแล้ว จะมีเฉลยพร้อมเหตุผลให้เรียนรู้ทันที</p>
+    <button class="primary" id="start">🚀 เริ่มผจญภัยกันเลย!</button>
+  </section>
+  <section id="quiz" hidden>
+    <div id="status" class="muted"></div>
+    <progress id="progress" max="10" value="0" aria-label="จำนวนข้อที่ตอบแล้ว"></progress>
+    <div class="question-card"><div id="questionIcon" class="question-icon" aria-hidden="true"></div><h2 id="question" tabindex="-1"></h2></div>
+    <p class="hint">👆 เลือกคำตอบ แล้วกดยืนยันได้เลย</p>
+    <div id="choices" class="choices" role="group" aria-labelledby="question"></div>
+    <div id="feedback" class="feedback" role="status" hidden></div>
+    <button id="confirm" class="primary" disabled>💡 ยืนยันคำตอบ</button>
+    <button id="next" class="primary" hidden>ข้อถัดไป →</button>
+  </section>
+  <section id="result" hidden>
+    <h2 id="resultHeading" tabindex="-1">🎉 พิชิตครบ 10 ภารกิจแล้ว!</h2>
+    <div class="score-card"><div id="resultIcon" class="result-icon" aria-hidden="true"></div><div id="award" class="award"></div><div id="score" class="score" aria-label="คะแนนที่ได้"></div><p id="message"></p></div>
+    <h2>📚 สมุดเฉลยของนักสืบ</h2>
+    <div id="review"></div>
+    <button class="primary" id="restart">🎮 เล่นอีกครั้ง ↻</button>
+  </section>
+</main>
+<script>
+'use strict';
+const questions = [
+  {q:'จำนวนถัดไปในลำดับ 2, 4, 8, 16, … คืออะไร?', choices:['18','24','32','36'], answer:2, why:'แต่ละจำนวนคูณ 2 ดังนั้น 16 × 2 = 32'},
+  {q:'แมวทุกตัวเป็นสัตว์ มะลิเป็นแมว ข้อใดสรุปได้แน่นอน?', choices:['มะลิเป็นสัตว์','สัตว์ทุกตัวเป็นแมว','มะลิเป็นสุนัข','แมวทุกตัวชื่อมะลิ'], answer:0, why:'เมื่อแมวทุกตัวอยู่ในกลุ่มสัตว์ มะลิซึ่งเป็นแมวจึงเป็นสัตว์ด้วย'},
+  {q:'เอสูงกว่าบี และบีสูงกว่าซี ใครเตี้ยที่สุดในสามคนนี้?', choices:['เอ','บี','ซี','ทั้งสามสูงเท่ากัน'], answer:2, why:'เรียงจากสูงไปเตี้ยได้ เอ → บี → ซี ดังนั้นซีเตี้ยที่สุด'},
+  {q:'วันนี้เป็นวันอังคาร อีก 10 วันจะเป็นวันอะไร?', choices:['วันพุธ','วันพฤหัสบดี','วันศุกร์','วันเสาร์'], answer:2, why:'อีก 7 วันเป็นวันอังคาร แล้วนับต่ออีก 3 วันเป็นวันศุกร์'},
+  {q:'มีลูกบอลสีแดง 3 ลูก และสีน้ำเงิน 2 ลูกในถุง ต้องหยิบโดยไม่มองอย่างน้อยกี่ลูก จึงมั่นใจว่ามีสีเดียวกันอย่างน้อย 2 ลูก?', choices:['2 ลูก','3 ลูก','4 ลูก','5 ลูก'], answer:1, why:'มีเพียง 2 สี สองลูกแรกอาจต่างสีกัน แต่ลูกที่สามต้องซ้ำกับสีใดสีหนึ่งแน่นอน'},
+  {q:'นก 3 ตัวจับแมลงได้รวม 3 ตัวใน 3 นาที ถ้านกแต่ละตัวจับแมลงด้วยอัตราเท่ากันและคงที่ นก 6 ตัวจะจับแมลงได้กี่ตัวใน 3 นาที?', choices:['3 ตัว','6 ตัว','9 ตัว','12 ตัว'], answer:1, why:'ใน 3 นาที นกแต่ละตัวจับได้ 1 ตัว ดังนั้นนก 6 ตัวจับได้ 6 ตัว'},
+  {q:'จำนวนใดแตกต่างจากพวก เมื่อพิจารณาว่าเป็นจำนวนคู่หรือจำนวนคี่: 12, 18, 21, 30?', choices:['12','18','21','30'], answer:2, why:'21 เป็นจำนวนคี่ ส่วน 12, 18 และ 30 เป็นจำนวนคู่'},
+  {q:'กฎคือ “ถ้าฝนตก ถนนจะเปียก” ตอนนี้ถนนไม่เปียก ถ้ากฎนี้เป็นจริงเสมอ ข้อใดสรุปได้?', choices:['ฝนกำลังตก','ฝนไม่ตก','ถนนทุกสายเปียก','พรุ่งนี้ฝนจะตก'], answer:1, why:'ถ้าฝนตก ถนนต้องเปียก เมื่อถนนไม่เปียก จึงสรุปได้ว่าฝนไม่ตกตามกฎที่กำหนด'},
+  {q:'มีผู้เข้าแข่งขัน 5 คน ทุกคนแข่งกับคนอื่นคนละ 1 ครั้ง แต่ละครั้งมีผู้เล่น 2 คน ต้องแข่งทั้งหมดกี่ครั้ง?', choices:['5 ครั้ง','10 ครั้ง','15 ครั้ง','20 ครั้ง'], answer:1, why:'นับคู่ได้ 4 + 3 + 2 + 1 = 10 คู่ โดยไม่ต้องนับคู่เดิมซ้ำ'},
+  {q:'กล่องสามใบติดป้าย “แอปเปิล”, “ส้ม”, “แอปเปิลและส้ม” แต่ทุกป้ายติดผิด ถ้าหยิบผลไม้หนึ่งผลจากกล่องป้าย “แอปเปิลและส้ม” แล้วได้ส้ม กล่องนี้บรรจุอะไร? (แต่ละกล่องมีผลไม้ตามหนึ่งในสามชนิดที่ระบุ)', choices:['แอปเปิลเท่านั้น','ส้มเท่านั้น','แอปเปิลและส้ม','สรุปไม่ได้'], answer:1, why:'ป้ายทุกใบผิด กล่องนี้จึงไม่ใช่กล่องผสม และเมื่อหยิบได้ส้ม กล่องนี้ต้องเป็นส้มเท่านั้น'}
+];
+const questionIcons = ['🔢','🐱','🦒','📅','🔴 🔵','🐦','🧮','🌦️','🏅','🍎 🍊'];
+const choiceIcons = ['🌟','🌷','🍀','🦋'];
+const $ = id => document.getElementById(id);
+let index = 0, selected = null, answers = [], locked = false;
+function start() {
+  index = 0; answers = [];
+  $('intro').hidden = true; $('result').hidden = true; $('quiz').hidden = false;
+  render();
+}
+function render() {
+  selected = null; locked = false;
+  const item = questions[index];
+  $('status').textContent = `ข้อ ${index + 1} จาก ${questions.length} · คะแนน ${answers.filter((a,i) => a === questions[i].answer).length}`;
+  $('progress').value = answers.length;
+  $('question').textContent = item.q;
+  $('questionIcon').textContent = questionIcons[index];
+  $('choices').replaceChildren();
+  item.choices.forEach((choice,i) => {
+    const button = document.createElement('button');
+    button.textContent = `${choiceIcons[i]} ${i + 1}. ${choice}`;
+    button.setAttribute('aria-pressed','false');
+    button.addEventListener('click', () => {
+      if (locked) return;
+      selected = i;
+      [...$('choices').children].forEach((b,j) => {
+        b.classList.toggle('selected',j === i);
+        b.setAttribute('aria-pressed',String(j === i));
+      });
+      $('confirm').disabled = false;
+    });
+    $('choices').append(button);
+  });
+  $('feedback').hidden = true; $('feedback').textContent = '';
+  $('confirm').hidden = false; $('confirm').disabled = true; $('next').hidden = true;
+  $('question').focus();
+}
+function confirmAnswer() {
+  if (selected === null || locked) return;
+  locked = true; answers.push(selected);
+  const item = questions[index];
+  [...$('choices').children].forEach((button,i) => {
+    button.disabled = true;
+    button.classList.toggle('correct',i === item.answer);
+    button.classList.toggle('wrong',i === selected && selected !== item.answer);
+  });
+  $('feedback').textContent = `${selected === item.answer ? '🎉 เก่งมาก! ตอบถูกแล้ว' : '🌱 เกือบแล้ว! มาเรียนรู้ไปด้วยกันนะ'} คำตอบ: ${item.choices[item.answer]} — ${item.why}`;
+  $('feedback').hidden = false; $('progress').value = answers.length;
+  $('confirm').hidden = true; $('next').hidden = false;
+  $('next').textContent = index === questions.length - 1 ? '🎁 เปิดกล่องคะแนน →' : '🐾 ไปข้อถัดไป →';
+  $('next').focus();
+}
+function finish() {
+  $('quiz').hidden = true; $('result').hidden = false;
+  const score = answers.filter((a,i) => a === questions[i].answer).length;
+  $('score').textContent = `${score} / ${questions.length}`;
+  const reward = score === 10
+    ? {icon:'🏆', title:'สุดยอดนักสืบตรรกะ!', message:'เต็มสิบเลย! ไหวพริบของเธอเปล่งประกายเหมือนดาว ⭐'}
+    : score >= 7
+    ? {icon:'🦉', title:'นักคิดดาวรุ่ง!', message:'เก่งมาก! เธอใช้เหตุผลได้ดี ลองดูเฉลยแล้วเก็บดาวเพิ่มกันนะ 🌟'}
+    : score >= 4
+    ? {icon:'🦊', title:'นักสำรวจช่างคิด!', message:'ทำได้ดีเลย! ทุกข้อช่วยให้เราเก่งขึ้น ลองทบทวนแล้วลุยอีกครั้ง 💪'}
+    : {icon:'🌱', title:'ต้นกล้านักคิด!', message:'ขอบคุณที่ตั้งใจจนจบ! ค่อย ๆ อ่านเฉลยแล้วลองใหม่ เราเก่งขึ้นได้ทุกวัน 🌈'};
+  $('resultIcon').textContent = reward.icon;
+  $('award').textContent = reward.title;
+  $('message').textContent = reward.message;
+  $('review').replaceChildren();
+  questions.forEach((item,i) => {
+    const detail = document.createElement('details');
+    const summary = document.createElement('summary');
+    summary.textContent = `${answers[i] === item.answer ? '✓' : '✗'} ข้อ ${i + 1}: ${item.q}`;
+    const explanation = document.createElement('p');
+    explanation.textContent = `คุณตอบ: ${item.choices[answers[i]]} · คำตอบที่ถูก: ${item.choices[item.answer]} — ${item.why}`;
+    detail.append(summary,explanation); $('review').append(detail);
+  });
+  $('resultHeading').focus();
+}
+$('start').addEventListener('click',start);
+$('restart').addEventListener('click',start);
+$('confirm').addEventListener('click',confirmAnswer);
+$('next').addEventListener('click',() => { if (!locked) return; index++; index < questions.length ? render() : finish(); });
+</script>
+</body>
+</html>
